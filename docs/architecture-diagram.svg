@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #555; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+      .box { fill: #f0f8ff; stroke: #4682b4; stroke-width: 2; rx: 5; }
+      .api-box { fill: #e6ffe6; stroke: #32cd32; stroke-width: 2; rx: 5; }
+      .core-box { fill: #fff0e6; stroke: #ff8c00; stroke-width: 2; rx: 5; }
+      .config-box { fill: #f0e6ff; stroke: #9370db; stroke-width: 2; rx: 5; }
+      .spring-box { fill: #ffe6e6; stroke: #dc143c; stroke-width: 2; rx: 5; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">Simple Flow 整体架构图</text>
+  
+  <!-- Configuration Layer -->
+  <text x="50" y="70" class="subtitle">配置层</text>
+  
+  <!-- SQL Style Configuration -->
+  <rect x="50" y="80" width="150" height="80" class="config-box"/>
+  <text x="125" y="100" text-anchor="middle" class="subtitle">SQL风格语法</text>
+  <text x="125" y="115" text-anchor="middle" class="text">THEN, IF, SELECT</text>
+  <text x="125" y="130" text-anchor="middle" class="text">WHERE-THEN-ELSE</text>
+  <text x="125" y="145" text-anchor="middle" class="text">CASE-WHEN</text>
+  
+  <!-- YAML Configuration -->
+  <rect x="220" y="80" width="120" height="80" class="config-box"/>
+  <text x="280" y="100" text-anchor="middle" class="subtitle">YAML配置</text>
+  <text x="280" y="115" text-anchor="middle" class="text">传统步骤定义</text>
+  <text x="280" y="130" text-anchor="middle" class="text">条件分支</text>
+  <text x="280" y="145" text-anchor="middle" class="text">application.yml</text>
+  
+  <!-- Annotation Configuration -->
+  <rect x="360" y="80" width="120" height="80" class="config-box"/>
+  <text x="420" y="100" text-anchor="middle" class="subtitle">注解配置</text>
+  <text x="420" y="115" text-anchor="middle" class="text">@SimpleFlow</text>
+  <text x="420" y="130" text-anchor="middle" class="text">@Step</text>
+  <text x="420" y="145" text-anchor="middle" class="text">自动发现</text>
+  
+  <!-- Programmatic API -->
+  <rect x="500" y="80" width="120" height="80" class="config-box"/>
+  <text x="560" y="100" text-anchor="middle" class="subtitle">编程式API</text>
+  <text x="560" y="115" text-anchor="middle" class="text">FlowDefinition</text>
+  <text x="560" y="130" text-anchor="middle" class="text">StepDefinition</text>
+  <text x="560" y="145" text-anchor="middle" class="text">动态构建</text>
+  
+  <!-- API Layer -->
+  <text x="50" y="200" class="subtitle">API层</text>
+  
+  <rect x="50" y="210" width="570" height="60" class="api-box"/>
+  <text x="335" y="230" text-anchor="middle" class="subtitle">Simple Flow API</text>
+  <text x="150" y="250" text-anchor="middle" class="text">FlowEngine</text>
+  <text x="250" y="250" text-anchor="middle" class="text">FlowBuilder</text>
+  <text x="350" y="250" text-anchor="middle" class="text">FlowContext</text>
+  <text x="450" y="250" text-anchor="middle" class="text">StepExecutor</text>
+  <text x="550" y="250" text-anchor="middle" class="text">FlowDefinition</text>
+  
+  <!-- Core Layer -->
+  <text x="50" y="300" class="subtitle">核心层</text>
+  
+  <!-- Flow Engine -->
+  <rect x="50" y="310" width="140" height="80" class="core-box"/>
+  <text x="120" y="330" text-anchor="middle" class="subtitle">流程引擎</text>
+  <text x="120" y="345" text-anchor="middle" class="text">DefaultFlowEngine</text>
+  <text x="120" y="360" text-anchor="middle" class="text">ExecutionContext</text>
+  <text x="120" y="375" text-anchor="middle" class="text">ExecutionPlan</text>
+  
+  <!-- Step Executors -->
+  <rect x="210" y="310" width="140" height="80" class="core-box"/>
+  <text x="280" y="330" text-anchor="middle" class="subtitle">步骤执行器</text>
+  <text x="280" y="345" text-anchor="middle" class="text">ServiceStepExecutor</text>
+  <text x="280" y="360" text-anchor="middle" class="text">ConditionalExecutor</text>
+  <text x="280" y="375" text-anchor="middle" class="text">ParallelExecutor</text>
+  
+  <!-- Configuration Parser -->
+  <rect x="370" y="310" width="140" height="80" class="core-box"/>
+  <text x="440" y="330" text-anchor="middle" class="subtitle">配置解析器</text>
+  <text x="440" y="345" text-anchor="middle" class="text">FlowConfigParser</text>
+  <text x="440" y="360" text-anchor="middle" class="text">YamlLoader</text>
+  <text x="440" y="375" text-anchor="middle" class="text">AnnotationScanner</text>
+  
+  <!-- Context Management -->
+  <rect x="530" y="310" width="140" height="80" class="core-box"/>
+  <text x="600" y="330" text-anchor="middle" class="subtitle">上下文管理</text>
+  <text x="600" y="345" text-anchor="middle" class="text">FlowContextImpl</text>
+  <text x="600" y="360" text-anchor="middle" class="text">ContextManager</text>
+  <text x="600" y="375" text-anchor="middle" class="text">VariableResolver</text>
+  
+  <!-- Integration Layer -->
+  <text x="50" y="420" class="subtitle">集成层</text>
+  
+  <!-- Spring Boot Integration -->
+  <rect x="50" y="430" width="200" height="80" class="spring-box"/>
+  <text x="150" y="450" text-anchor="middle" class="subtitle">Spring Boot集成</text>
+  <text x="150" y="465" text-anchor="middle" class="text">AutoConfiguration</text>
+  <text x="150" y="480" text-anchor="middle" class="text">SpringFlowEngine</text>
+  <text x="150" y="495" text-anchor="middle" class="text">BeanStepExecutor</text>
+  
+  <!-- Standalone Integration -->
+  <rect x="270" y="430" width="180" height="80" class="spring-box"/>
+  <text x="360" y="450" text-anchor="middle" class="subtitle">独立应用集成</text>
+  <text x="360" y="465" text-anchor="middle" class="text">StandaloneFlowEngine</text>
+  <text x="360" y="480" text-anchor="middle" class="text">ServiceRegistry</text>
+  <text x="360" y="495" text-anchor="middle" class="text">StepHandler接口</text>
+  
+  <!-- Expression Engine -->
+  <rect x="470" y="430" width="150" height="80" class="spring-box"/>
+  <text x="545" y="450" text-anchor="middle" class="subtitle">表达式引擎</text>
+  <text x="545" y="465" text-anchor="middle" class="text">SpEL支持</text>
+  <text x="545" y="480" text-anchor="middle" class="text">Groovy支持</text>
+  <text x="545" y="495" text-anchor="middle" class="text">自定义DSL</text>
+  
+  <!-- Business Layer -->
+  <text x="50" y="540" class="subtitle">业务层</text>
+  
+  <rect x="50" y="550" width="570" height="40" class="box"/>
+  <text x="335" y="575" text-anchor="middle" class="subtitle">业务服务 (UserService, OrderService, PaymentService, etc.)</text>
+  
+  <!-- Arrows -->
+  <!-- Configuration to API -->
+  <line x1="125" y1="160" x2="125" y2="210" class="arrow"/>
+  <line x1="280" y1="160" x2="280" y2="210" class="arrow"/>
+  <line x1="420" y1="160" x2="420" y2="210" class="arrow"/>
+  <line x1="560" y1="160" x2="560" y2="210" class="arrow"/>
+  
+  <!-- API to Core -->
+  <line x1="335" y1="270" x2="335" y2="310" class="arrow"/>
+  
+  <!-- Core to Integration -->
+  <line x1="335" y1="390" x2="335" y2="430" class="arrow"/>
+  
+  <!-- Integration to Business -->
+  <line x1="335" y1="510" x2="335" y2="550" class="arrow"/>
+  
+</svg>
