@@ -8,9 +8,9 @@ import java.util.*;
 
 /**
  * 流程定义模型
- * 
+ *
  * 定义一个完整的工作流程，包括步骤、依赖关系和配置
- * 
+ *
  * @author Simple Flow Team
  * @since 1.0.0
  */
@@ -32,6 +32,9 @@ public class FlowDefinition {
 
     /**
      * 根据ID查找步骤
+     *
+     * @param stepId 步骤ID
+     * @return 步骤定义，如果不存在则返回Optional.empty()
      */
     public Optional<StepDefinition> findStep(String stepId) {
         return steps.stream()
@@ -41,6 +44,9 @@ public class FlowDefinition {
 
     /**
      * 获取指定步骤的依赖步骤
+     *
+     * @param stepId 步骤ID
+     * @return 依赖步骤ID列表
      */
     public List<String> getStepDependencies(String stepId) {
         return dependencies.getOrDefault(stepId, Collections.emptyList());
@@ -48,6 +54,9 @@ public class FlowDefinition {
 
     /**
      * 获取指定步骤的后续步骤
+     *
+     * @param stepId 步骤ID
+     * @return 后续步骤ID列表
      */
     public List<String> getStepSuccessors(String stepId) {
         return dependencies.entrySet().stream()
@@ -58,11 +67,13 @@ public class FlowDefinition {
 
     /**
      * 检查是否存在循环依赖
+     *
+     * @return 是否存在循环依赖
      */
     public boolean hasCyclicDependency() {
         Set<String> visited = new HashSet<>();
         Set<String> recursionStack = new HashSet<>();
-        
+
         for (StepDefinition step : steps) {
             if (hasCyclicDependencyUtil(step.getId(), visited, recursionStack)) {
                 return true;
@@ -78,53 +89,55 @@ public class FlowDefinition {
         if (visited.contains(stepId)) {
             return false;
         }
-        
+
         visited.add(stepId);
         recursionStack.add(stepId);
-        
+
         List<String> successors = getStepSuccessors(stepId);
         for (String successor : successors) {
             if (hasCyclicDependencyUtil(successor, visited, recursionStack)) {
                 return true;
             }
         }
-        
+
         recursionStack.remove(stepId);
         return false;
     }
 
     /**
      * 获取流程的拓扑排序
+     *
+     * @return 拓扑排序后的步骤ID列表
      */
     public List<String> getTopologicalOrder() {
         Map<String, Integer> inDegree = new HashMap<>();
         Queue<String> queue = new LinkedList<>();
         List<String> result = new ArrayList<>();
-        
+
         // 初始化入度
         for (StepDefinition step : steps) {
             inDegree.put(step.getId(), 0);
         }
-        
+
         // 计算入度
         for (Map.Entry<String, List<String>> entry : dependencies.entrySet()) {
             for (String dependency : entry.getValue()) {
                 inDegree.put(entry.getKey(), inDegree.get(entry.getKey()) + 1);
             }
         }
-        
+
         // 找到入度为0的节点
         for (Map.Entry<String, Integer> entry : inDegree.entrySet()) {
             if (entry.getValue() == 0) {
                 queue.offer(entry.getKey());
             }
         }
-        
+
         // 拓扑排序
         while (!queue.isEmpty()) {
             String current = queue.poll();
             result.add(current);
-            
+
             List<String> successors = getStepSuccessors(current);
             for (String successor : successors) {
                 inDegree.put(successor, inDegree.get(successor) - 1);
@@ -133,7 +146,7 @@ public class FlowDefinition {
                 }
             }
         }
-        
+
         return result;
     }
 

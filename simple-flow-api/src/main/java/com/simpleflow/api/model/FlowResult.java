@@ -8,9 +8,9 @@ import java.util.*;
 
 /**
  * 流程执行结果模型
- * 
+ *
  * 包含流程执行的完整结果信息
- * 
+ *
  * @author Simple Flow Team
  * @since 1.0.0
  */
@@ -49,6 +49,9 @@ public class FlowResult {
 
     /**
      * 获取指定步骤的结果
+     *
+     * @param stepId 步骤ID
+     * @return 步骤结果，如果不存在则返回Optional.empty()
      */
     public Optional<StepResult> getStepResult(String stepId) {
         return Optional.ofNullable(stepResults.get(stepId));
@@ -56,6 +59,10 @@ public class FlowResult {
 
     /**
      * 获取指定输出数据
+     *
+     * @param <T> 返回值类型
+     * @param key 数据键
+     * @return 输出数据，如果不存在则返回Optional.empty()
      */
     @SuppressWarnings("unchecked")
     public <T> Optional<T> getOutputData(String key) {
@@ -64,6 +71,11 @@ public class FlowResult {
 
     /**
      * 获取指定输出数据，如果不存在则返回默认值
+     *
+     * @param <T> 返回值类型
+     * @param key 数据键
+     * @param defaultValue 默认值
+     * @return 输出数据或默认值
      */
     @SuppressWarnings("unchecked")
     public <T> T getOutputData(String key, T defaultValue) {
@@ -72,6 +84,10 @@ public class FlowResult {
 
     /**
      * 获取指定元数据
+     *
+     * @param <T> 返回值类型
+     * @param key 元数据键
+     * @return 元数据，如果不存在则返回Optional.empty()
      */
     @SuppressWarnings("unchecked")
     public <T> Optional<T> getMetadata(String key) {
@@ -80,6 +96,8 @@ public class FlowResult {
 
     /**
      * 检查是否成功
+     *
+     * @return 是否成功
      */
     public boolean isSuccess() {
         return status == Status.SUCCESS;
@@ -87,6 +105,8 @@ public class FlowResult {
 
     /**
      * 检查是否失败
+     *
+     * @return 是否失败
      */
     public boolean isFailed() {
         return status == Status.FAILED;
@@ -94,6 +114,8 @@ public class FlowResult {
 
     /**
      * 检查是否被取消
+     *
+     * @return 是否被取消
      */
     public boolean isCancelled() {
         return status == Status.CANCELLED;

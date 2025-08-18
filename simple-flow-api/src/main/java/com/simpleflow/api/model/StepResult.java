@@ -8,9 +8,9 @@ import java.util.*;
 
 /**
  * 步骤执行结果模型
- * 
+ *
  * 包含单个步骤执行的完整结果信息
- * 
+ *
  * @author Simple Flow Team
  * @since 1.0.0
  */
@@ -190,6 +190,8 @@ public class StepResult {
 
     /**
      * 创建成功结果
+     * @param stepId 步骤ID
+     * @param stepName 步骤名称
      */
     public static StepResult success(String stepId, String stepName) {
         LocalDateTime now = LocalDateTime.now();
@@ -200,6 +202,9 @@ public class StepResult {
 
     /**
      * 创建成功结果（带输出数据）
+     * @param stepId 步骤ID
+     * @param stepName 步骤名称
+     * @param outputData 输出数据
      */
     public static StepResult success(String stepId, String stepName, Map<String, Object> outputData) {
         LocalDateTime now = LocalDateTime.now();
@@ -210,6 +215,9 @@ public class StepResult {
 
     /**
      * 创建失败结果
+     * @param stepId 步骤ID
+     * @param stepName 步骤名称
+     * @param error 异常对象
      */
     public static StepResult failure(String stepId, String stepName, Exception error) {
         LocalDateTime now = LocalDateTime.now();
@@ -220,6 +228,9 @@ public class StepResult {
 
     /**
      * 创建失败结果（带错误消息）
+     * @param stepId 步骤ID
+     * @param stepName 步骤名称
+     * @param errorMessage 错误消息
      */
     public static StepResult failure(String stepId, String stepName, String errorMessage) {
         LocalDateTime now = LocalDateTime.now();
@@ -230,6 +241,9 @@ public class StepResult {
 
     /**
      * 创建跳过结果
+     * @param stepId 步骤ID
+     * @param stepName 步骤名称
+     * @param reason 跳过原因
      */
     public static StepResult skipped(String stepId, String stepName, String reason) {
         Map<String, Object> metadata = new HashMap<>();
