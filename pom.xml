@@ -62,8 +62,6 @@
         
         <!-- 集成测试模块 -->
         <module>simple-flow-integration-test</module>
-        <module>simple-flow-core</module>
-        <module>simple-flow-expression</module>
     </modules>
 
     <dependencyManagement>
