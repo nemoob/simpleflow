@@ -6,9 +6,9 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>com.simpleflow</groupId>
+        <groupId>io.github.nemoob</groupId>
         <artifactId>simple-flow-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     
     <artifactId>simple-flow-storage</artifactId>
@@ -18,13 +18,13 @@
     <dependencies>
         <!-- 内部依赖 -->
         <dependency>
-            <groupId>com.simpleflow</groupId>
+            <groupId>io.github.nemoob</groupId>
             <artifactId>simple-flow-api</artifactId>
         </dependency>
         
         <!-- Simple Flow Core -->
         <dependency>
-            <groupId>com.simpleflow</groupId>
+            <groupId>io.github.nemoob</groupId>
             <artifactId>simple-flow-core</artifactId>
         </dependency>
         
@@ -53,17 +53,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.3.23</version>
+            <version>5.3.39</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.3.23</version>
+            <version>5.3.39</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>5.3.23</version>
+            <version>5.3.39</version>
         </dependency>
         
         <!-- 数据库连接池 -->
@@ -124,7 +124,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.3.23</version>
+            <version>5.3.39</version>
             <scope>test</scope>
         </dependency>
         

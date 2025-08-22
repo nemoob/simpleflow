@@ -5,14 +5,14 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.simpleflow</groupId>
+    <groupId>io.github.nemoob</groupId>
     <artifactId>simple-flow-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>Simple Flow Framework</name>
     <description>A lightweight, flexible workflow engine for Java applications</description>
-    <url>https://github.com/simple-flow/simple-flow</url>
+    <url>https://github.com/nemoob/simpleflow</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -25,17 +25,17 @@
         <junit.version>5.5.2</junit.version>
         <mockito.version>3.1.0</mockito.version>
         <slf4j.version>1.7.28</slf4j.version>
-        <log4j2.version>2.12.1</log4j2.version>
+        <log4j2.version>2.20.0</log4j2.version>
         <fastjson2.version>2.0.43</fastjson2.version>
         <lombok.version>1.18.10</lombok.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <commons-io.version>2.6</commons-io.version>
-        <guava.version>28.1-jre</guava.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <guava.version>32.1.3-jre</guava.version>
         <assertj.version>3.13.2</assertj.version>
         <micrometer.version>1.3.0</micrometer.version>
         <prometheus.version>0.8.0</prometheus.version>
         <redis.version>3.1.0</redis.version>
-        <mysql.version>8.0.35</mysql.version>
+        <mysql.version>8.0.33</mysql.version>
         <h2.version>1.4.200</h2.version>
         <mybatis.version>3.5.13</mybatis.version>
         <mybatis-spring.version>2.1.1</mybatis-spring.version>
@@ -56,10 +56,10 @@
 <!--        -->
 <!--        &lt;!&ndash; Web管理界面模块 &ndash;&gt;-->
 <!--        <module>simple-flow-web</module>-->
-        
+
         <!-- 监控模块 -->
         <module>simple-flow-monitor</module>
-        
+
         <!-- 集成测试模块 -->
         <module>simple-flow-integration-test</module>
     </modules>
@@ -77,17 +77,17 @@
             
             <!-- Simple Flow 内部模块 -->
             <dependency>
-                <groupId>com.simpleflow</groupId>
+                <groupId>io.github.nemoob</groupId>
                 <artifactId>simple-flow-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.simpleflow</groupId>
+                <groupId>io.github.nemoob</groupId>
                 <artifactId>simple-flow-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.simpleflow</groupId>
+                <groupId>io.github.nemoob</groupId>
                 <artifactId>simple-flow-storage</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -206,67 +206,174 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
-                    </configuration>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring.boot.version}</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.3.0</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.5.0</version>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+<!--        <pluginManagement>-->
+<!--            <plugins>-->
+<!--                &lt;!&ndash; Maven编译插件 &ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                    <version>3.11.0</version>-->
+<!--                    <configuration>-->
+<!--                        <source>${maven.compiler.source}</source>-->
+<!--                        <target>${maven.compiler.target}</target>-->
+<!--                        <encoding>${project.build.sourceEncoding}</encoding>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-deploy-plugin</artifactId>-->
+<!--                    <version>3.1.2</version>-->
+<!--                </plugin>-->
+
+<!--                &lt;!&ndash; 添加GPG签名插件 &ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                    <version>3.1.0</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>sign-artifacts</id>-->
+<!--                            <phase>verify</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>sign</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+
+<!--                &lt;!&ndash; 添加源码和Javadoc插件 &ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-source-plugin</artifactId>-->
+<!--                    <version>3.3.0</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>attach-sources</id>-->
+<!--                            <goals>-->
+<!--                                <goal>jar</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-javadoc-plugin</artifactId>-->
+<!--                    <version>3.5.0</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>attach-javadocs</id>-->
+<!--                            <goals>-->
+<!--                                <goal>jar</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+<!--            </plugins>-->
+<!--        </pluginManagement>-->
+
+        <!-- 添加实际的plugins配置 -->
+        <plugins>
+            <!-- Maven发布插件 -->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-deploy-plugin</artifactId>-->
+<!--                <version>3.1.1</version>-->
+<!--            </plugin>-->
+
+            <!--   central发布插件    -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>ossrh</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
+
+            <!--   source源码插件   官方要求 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--   javadoc插件  官方要求  -->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <additionalOptions>
+                        <!-- skip strict check java doc-->
+                        <additionalOption>-Xdoclint:none</additionalOption>
+                    </additionalOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- GPG签名插件 -->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                <version>3.1.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>sign-artifacts</id>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>sign</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+<!--            &lt;!&ndash; Nexus Staging插件 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.sonatype.plugins</groupId>-->
+<!--                <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--                <version>1.6.13</version>-->
+<!--                <extensions>true</extensions>-->
+<!--                <configuration>-->
+<!--                    <serverId>ossrh</serverId>-->
+<!--&lt;!&ndash;                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>&ndash;&gt;-->
+<!--                    <nexusUrl>https://central.sonatype.com/</nexusUrl>-->
+<!--                    <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+        </plugins>
     </build>
 
     <licenses>
@@ -279,16 +386,43 @@
 
     <developers>
         <developer>
-            <id>simple-flow-team</id>
-            <name>Simple Flow Development Team</name>
-            <email>dev@simpleflow.com</email>
+            <id>nemoob</id>
+            <name>nemoob</name>
+            <email>yang_zhong_ren@aliyun.com</email>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/simple-flow/simple-flow.git</connection>
-        <developerConnection>scm:git:ssh://github.com:simple-flow/simple-flow.git</developerConnection>
-        <url>http://github.com/simple-flow/simple-flow/tree/main</url>
+        <connection>scm:git:https://github.com/nemoob/simpleflow.git</connection>
+        <developerConnection>scm:git:ssh://github.com/nemoob/simpleflow.git</developerConnection>
+        <url>https://github.com/nemoob/simpleflow</url>
     </scm>
 
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>github</id> &lt;!&ndash; 必须和 settings.xml server id 一致 &ndash;&gt;-->
+<!--            <name>GitHub Packages</name>-->
+<!--            <url>https://maven.pkg.github.com/nemoob/simpleflow</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>github</id>-->
+<!--            <name>GitHub Packages</name>-->
+<!--            <url>https://maven.pkg.github.com/nemoob/simpleflow</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
+
+<!--    ossrh -->
+    <!-- 更新distributionManagement -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>OSS Sonatype Snapshots</name>
+            <url>https://central.sonatype.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>OSS Sonatype Releases</name>
+            <url>https://central.sonatype.com/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
 </project>

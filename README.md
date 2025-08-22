@@ -26,7 +26,7 @@
 #### Maven
 ```xml
 <dependency>
-    <groupId>com.simpleflow</groupId>
+    <groupId>io.github.nemoob</groupId>
     <artifactId>simple-flow-core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
@@ -35,7 +35,7 @@
 #### Spring Boot
 ```xml
 <dependency>
-    <groupId>com.simpleflow</groupId>
+    <groupId>io.github.nemoob</groupId>
     <artifactId>simple-flow-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>

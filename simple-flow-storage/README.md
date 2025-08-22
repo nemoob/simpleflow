@@ -284,7 +284,7 @@ spring:
 # MyBatis 配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.simpleflow.storage.entity
+  type-aliases-package: io.github.nemoob.storage.entity
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true

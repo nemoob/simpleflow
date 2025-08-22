@@ -335,7 +335,7 @@ class FlowEngineIntegrationTest {
     
     <!-- 表达式引擎 -->
     <dependency>
-        <groupId>com.simpleflow</groupId>
+        <groupId>io.github.nemoob</groupId>
         <artifactId>simple-flow-expression</artifactId>
         <version>${project.version}</version>
     </dependency>
